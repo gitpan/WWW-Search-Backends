@@ -8,6 +8,7 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/WWW/Search/Backends.pm
+lib/WWW/Search/CraigsList.pm
 lib/WWW/Search/Crawler.pm
 lib/WWW/Search/Excite/News.pm
 lib/WWW/Search/ExciteForWebServers.pm
@@ -20,6 +21,7 @@ lib/WWW/Search/MetaCrawler.pm
 lib/WWW/Search/Metapedia.pm
 lib/WWW/Search/MSIndexServer.pm
 lib/WWW/Search/NetFind.pm
+lib/WWW/Search/Newturfers.pm
 lib/WWW/Search/PLweb.pm
 lib/WWW/Search/Profusion.pm
 lib/WWW/Search/Search97.pm
@@ -33,5 +35,6 @@ MANIFEST			This list of files
 META.yml
 README
 t/dummy.t
+t/pod.t
 t/timezone.t
 t/watchnet.t

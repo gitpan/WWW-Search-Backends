@@ -1,17 +1,21 @@
+--- 
 abstract: Query web search engines and get URLs
-author: 'Martin Thurn <mthurn@cpan.org>'
-build_requires:
+author: Martin Thurn <mthurn@cpan.org>
+build_requires: 
   Test::More: 0
 distribution_type: module
-generated_by: Module::Install version 0.63
+generated_by: Module::Install version 0.67
 license: perl
+meta-spec: 
+  url: http://module-build.sourceforge.net/META-spec-v1.3.html
+  version: 1.3
 name: WWW-Search-Backends
-no_index:
-  directory:
+no_index: 
+  directory: 
     - inc
     - t
-requires:
+requires: 
   WWW::Search: 0
   WWW::Search::Test: 2.271
   perl: 5.004
-version: 1.04
+version: 1.071

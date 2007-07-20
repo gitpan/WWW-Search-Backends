@@ -1,5 +1,5 @@
 
-# $rcs = ' $Id: Backends.pm,v 1.4 2006/07/30 22:35:00 Daddy Exp $ ' ;
+# $rcs = ' $Id: Backends.pm,v 1.7 2007/07/20 20:30:20 Daddy Exp $ ' ;
 
 =head1 NAME
 
@@ -22,8 +22,10 @@ Martin Thurn
 
 package WWW::Search::Backends;
 
-my
-$VERSION = '1.04';
+use strict;
+
+our
+$VERSION = '1.071';
 
 1;
 

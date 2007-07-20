@@ -1,5 +1,5 @@
 
-# $Id: watchnet.t,v 1.2 2006/07/31 03:29:42 Daddy Exp $
+# $Id: watchnet.t,v 1.3 2007/07/20 20:28:54 Daddy Exp $
 
 use Data::Dumper;
 use ExtUtils::testlib;
@@ -18,11 +18,11 @@ my $iDump = 0;
 # goto DEBUG_NOW;
 # goto CONTENTS;
 
-diag("Sending 1-page queries...");
+diag("Sending 1-page query...");
 $iDebug = 0;
 $iDump = 0;
-# This test returns one page of results:
-&tm_run_test('normal', 'tissot', 1, 99, $iDebug, $iDump);
+# This test returns one (long) page of results:
+&tm_run_test_no_approx('normal', 'tissot', 111, undef, $iDebug, $iDump);
 ;
 
 __END__

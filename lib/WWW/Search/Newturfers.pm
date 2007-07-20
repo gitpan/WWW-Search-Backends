@@ -1,51 +1,37 @@
 
-# $Id: WatchNet.pm,v 1.4 2007/07/20 20:29:22 Daddy Exp $
+# $Id: Newturfers.pm,v 1.4 2006/08/12 19:45:42 Daddy Exp $
 
 =head1 NAME
 
-WWW::Search::WatchNet - backend for searching www.watchnet.com forums
+WWW::Search::Newturfers - backend for searching www.watchnet.com forums
 
 =head1 SYNOPSIS
 
   use WWW::Search;
-  my $oSearch = new WWW::Search('WatchNet');
+  my $oSearch = new WWW::Search('Newturfers');
   my $sQuery = WWW::Search::escape_query("rolex gold");
-  $oSearch->native_query($sQuery,
-                         { forum => 'tradingpst' }
-                        );
+  $oSearch->native_query($sQuery);
   while (my $oResult = $oSearch->next_result())
     print $oResult->url, "\n";
 
 =head1 DESCRIPTION
 
-This class is a WatchNet.com specialization of L<WWW::Search>.  It
-handles making and interpreting searches on the WatchNet forums
-F<http://www.watchnet.com>.
+This class is a Newturfers.com specialization of L<WWW::Search>.  It
+handles making and interpreting searches on the Newturfers forums
+F<http://www.newturfers.com>.
 
 This class exports no public interface; all interaction should
 be done through L<WWW::Search> objects.
 
 =head1 NOTES
 
-By default, the search is applied to the "Trading Post" forum.
-If you want to search a different forum,
-add the option {forum=>'forumname'} when you call native_query().
-The forum names are as follows:
-
-  watchtalk
-  tradingpst
-  dealwatch
-  goodguys
-  watchparts
-  auctionwatch
-
 In the resulting WWW::SearchResult objects,
 the 'source' element will contain the forum-registered name of the poster.
 
 In the resulting WWW::SearchResult objects,
 the 'change_date' element will contain the date and time of the post,
-exactly as it appears on the search page
-(usually 'MM/DD/YY hh:mm')
+exactly as it appears on the search results page
+(usually 'YYYY-MMDD hh:mm')
 
 =head1 SEE ALSO
 
@@ -74,9 +60,7 @@ See the Changes file
 
 #####################################################################
 
-package WWW::Search::WatchNet;
-
-use strict;
+package WWW::Search::Newturfers;
 
 use Carp ();
 use Data::Dumper;  # for debugging only
@@ -86,6 +70,7 @@ use WWW::SearchResult;
 use URI;
 use URI::Escape;
 
+use strict;
 use vars qw( $VERSION $MAINTAINER @ISA );
 
 @ISA = qw( WWW::Search );
@@ -95,27 +80,21 @@ $MAINTAINER = 'Martin Thurn <mthurn@cpan.org>';
 sub native_setup_search
   {
   my ($self, $sQuery, $rhOptsArg) = @_;
-  # print STDERR " +     This is WatchNet::native_setup_search()...\n";
+  # print STDERR " +     This is Newturfers::native_setup_search()...\n";
   # print STDERR " +       _options is ", $self->{'_options'}, "\n";
 
-  $self->http_method('GET');
   $self->user_agent('non-robot');
   # $self->agent_email('user@timezone.com');
 
-  # http://forums.watchnet.com/index.php?t=search&srch=tissot&field=all&forum_limiter=&search_logic=AND&sort_order=DESC&btn_submit=Search
-
   $self->{_next_to_retrieve} = 1;
-  my $sForum = lc($rhOptsArg->{forum}) || 'tradingpst';
-  $self->{'search_base_url'} ||= 'http://forums.watchnet.com';
-  $self->{'search_base_path'} ||= "/index.php";
+  $self->{'search_base_url'} ||= 'http://www.newturfers.com';
+  $self->{'search_base_path'} ||= "/bin/mwf/forum_search.pl";
   $self->{'_options'} = {
-                         t => 'search',
-                         srch => $sQuery,
-                         field => 'all',
-                         forum_limiter => '',
-                         search_logic => 'OR',
-                         sort_order => 'DESC',
-                         btn_submit => 'Search',
+                         board => 'cid6',
+                         mode => 'or',
+                         user => '',
+                         age => '',
+                         words => $sQuery,
                         };
   my $rhOptions = $self->{'_options'};
   if (defined($rhOptsArg))
@@ -147,20 +126,6 @@ sub native_setup_search
   } # native_setup_search
 
 
-sub hash_to_cgi_string
-  {
-  my $self = shift;
-  my $rh = shift;
-  my $sRet = '';
-  foreach my $sKey (qw( t srch field forum_limiter search_logic sort_order btn_submit ))
-    {
-    $sRet .= "$sKey=$rh->{$sKey}&";
-    } # foreach
-  chop $sRet;
-  return $sRet;
-  } # hash_to_cgi_string
-
-
 sub preprocess_results_page
   {
   my $self = shift;
@@ -178,82 +143,52 @@ sub parse_tree
   {
   my $self = shift;
   my $oTree = shift;
-  print STDERR " + ::WatchNet got tree $oTree\n" if (2 <= $self->{_debug});
+  print STDERR " + ::Newturfers got tree $oTree\n" if (2 <= $self->{_debug});
   my $hits_found = 0;
-  my $oTD = $oTree->look_down(_tag => 'td',
-                              VALIGN => 'TOP',
-                              ALIGN => 'RIGHT',
+  my $oTD = $oTree->look_down(_tag => 'table',
+                              class => 'tbl',
                              );
-  if (ref($oTD))
-    {
-    my $s = $oTD->as_text;
-    print STDERR " DDD approx TD is ==$s==\n" if (2 <= $self->{_debug});
-    if ($s =~ m!([0-9,]+) of [0-9,]+ Messages!)
-      {
-      my $s1 = $1;
-      $s1 =~ s!,!!g;
-      $self->approximate_hit_count(0 + $s1);
-      } # if
-    } # if
-  my @aoTD = $oTree->look_down(_tag => 'td',
-                               class => 'GenText',
-                               width => '100%',
+
+  my @aoA = $oTD->look_down(_tag => 'a',
+                              sub { $_[0]->attr('href') =~ m!topic_show.pl! },
                               );
- TD_TAG:
-  foreach my $oTD (@aoTD)
+ A_TAG:
+  foreach my $oA (@aoA)
     {
-    next TD_TAG unless ref($oTD);
-    my $s = $oTD->as_HTML;
-    print STDERR " DDD hit TD is ==$s==\n" if (2 <= $self->{_debug});
-    my $oA = $oTD->look_down(_tag => 'a');
-    next TD_TAG unless ref($oA);
-    $s = $oA->as_HTML;
-    print STDERR " DDD title A is ==$s==\n" if (2 <= $self->{_debug});
+    # Sanity checks:
+    next A_TAG unless ref($oA);
+    my $oTD = $oA->parent;
+    next A_TAG unless ref($oTD);
+    my $oTR = $oTD->parent; 
+    next A_TAG unless ($oTR->attr('class') eq 'crw');
     my $sTitle = $oA->as_text || '';
     my $sURL = $oA->attr('href') || '';
-    next TD_TAG unless ($sURL ne '');
+    $sURL = $self->{'search_base_url'} . '/bin/mwf/' . $sURL;
+    next A_TAG unless ($sURL ne '');
     print STDERR " DDD URL is ==$sURL==\n" if (2 <= $self->{_debug});
-    $oA->detach;
-    $oA->delete;
-    my $sDesc = $oTD->as_text;
     my $sDate = 'unknown';
     my $sPoster = 'unknown';
-    my $sForum = 'unknown';
-    my $oTR = $oTD->parent;
-    if (ref $oTR)
-      {
-      my @aoA = $oTR->look_down(_tag => 'a');
-      my $oA = shift @aoA;
-      if (ref $oA)
-        {
-        $s = $oA->as_HTML;
-        print STDERR " DDD forum A is ==$s==\n" if (2 <= $self->{_debug});
-        $sForum = $oA->as_text;
-        } # if
-      $oA = shift @aoA;
-      if (ref $oA)
-        {
-        $s = $oA->as_HTML;
-        print STDERR " DDD   poster A is ==$s==\n" if (2 <= $self->{_debug});
-        $sPoster = $oA->as_text;
-        } # if
-      my $oFONT = $oTR->look_down(_tag => 'font');
-      if (ref $oFONT)
-        {
-        $s = $oFONT->as_HTML;
-        print STDERR " DDD date FONT is ==$s==\n" if (2 <= $self->{_debug});
-        $sDate = $oFONT->as_text;
-        } # if
-      } # if
+    $oTD = $oTD->right;
+    my $oPoster = $oTD->look_down(_tag => 'a', 
+                               sub { $_[0]->attr('href') =~ m!user_info.pl! },
+                               );
+    if (ref($oPoster)) 
+    {
+      $sPoster = $oPoster->as_text;
+    }
+    my $oDate = $oTD->right;
+    if (ref($oDate))
+    {
+      $sDate = $oDate->as_text;
+    }
     my $hit = new WWW::SearchResult;
     $hit->add_url($sURL);
     $hit->title($sTitle);
     $hit->change_date($sDate);
     $hit->source($sPoster);
-    $hit->location($sForum);
     push(@{$self->{cache}}, $hit);
     $hits_found++;
-    } # foreach TD_TAG
+    } # foreach A_TAG
   return $hits_found;
   } # parse_tree
 
@@ -270,5 +205,4 @@ sub strip
 
 __END__
 
-http://forums.timezone.com/index.php?t=search&srch=tissot&field=all&forum_limiter=&search_logic=AND&sort_order=DESC
 

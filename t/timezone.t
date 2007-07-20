@@ -1,9 +1,9 @@
 
-# $Id: timezone.t,v 1.1 2006/07/31 03:16:34 Daddy Exp $
+# $Id: timezone.t,v 1.2 2007/07/20 20:35:30 Daddy Exp $
 
 use Data::Dumper;
 use ExtUtils::testlib;
-use Test::More no_plan;
+use Test::More skip_all;
 
 BEGIN { use_ok('WWW::Search') };
 BEGIN { use_ok('WWW::Search::Test') };
@@ -19,7 +19,7 @@ my $iDump = 0;
 # goto CONTENTS;
 
 diag("Sending 1-page queries...");
-$iDebug = 0;
+$iDebug = 2;
 $iDump = 0;
 # This test returns one page of results:
 &tm_run_test_no_approx('normal', 'tisot', 1, 222, $iDebug, $iDump);
