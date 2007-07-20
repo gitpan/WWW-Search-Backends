@@ -18,4 +18,4 @@ requires:
   WWW::Search: 0
   WWW::Search::Test: 2.271
   perl: 5.004
-version: 1.071
+version: 1.072

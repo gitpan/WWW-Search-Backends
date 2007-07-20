@@ -1,11 +1,11 @@
 # Profusion.pm
 # by Jim Smyser
 # Copyright (c) 1999 by Jim Smyser & USC/ISI
-# $Id: Profusion.pm,v 2.7 2007/07/19 01:20:42 Daddy Exp $
+# $Id: Profusion.pm,v 2.21 2007/07/20 21:37:40 Daddy Exp $
 
 =head1 NAME
 
-WWW::Search::Profusion - class for searching Profusion.com! 
+WWW::Search::Profusion - class for searching Profusion.com!
 
 
 =head1 SYNOPSIS
@@ -109,11 +109,7 @@ description does not get bolded over.
 1.03 fixes minor parsing error where some hits were being ignored.
 Also added returning of all HTML (raw).
 
-
 =cut
-#'
-
-#####################################################################
 
 package WWW::Search::Profusion;
 
@@ -122,7 +118,7 @@ use strict;
 use base 'WWW::Search';
 
 our
-$VERSION = do { my @r = ( q$Revision: 2.7 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 2.21 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 my $MAINTAINER = 'Jim Smyser <jsmyser@bigfoot.com>';
 my $TEST_CASES = <<"ENDTESTCASES";
@@ -227,4 +223,3 @@ sub native_retrieve_some
 1;
 
 __END__
-

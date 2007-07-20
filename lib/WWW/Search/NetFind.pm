@@ -1,13 +1,13 @@
 ##########################################################
 # NetFind.pm
-# by Gil Vidals 
-# Copyright (C) 1999-2000 by Gil Vidals at PositionGeek.com 
-# $Id: NetFind.pm,v 1.10 2007/07/19 01:21:39 Daddy Exp $
+# by Gil Vidals
+# Copyright (C) 1999-2000 by Gil Vidals at PositionGeek.com
+# $Id: NetFind.pm,v 1.801 2007/07/20 21:36:19 Daddy Exp $
 ##########################################################
 
 =head1 NAME
 
-WWW::Search::NetFind - class for searching NetFind 
+WWW::Search::NetFind - class for searching NetFind
 Originally based on Google.pm. NetFind is the same
 as AOL search.
 
@@ -106,9 +106,6 @@ Formatting change 10/08/99
 First release  09/19/99
 
 =cut
-#'
-
-#####################################################################
 
 package WWW::Search::NetFind;
 
@@ -117,7 +114,7 @@ use strict;
 use base 'WWW::Search';
 
 our
-$VERSION = do { my @r = ( q$Revision: 1.10 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 1.801 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 my $MAINTAINER = 'Gil Vidals <gil@positiongeek.com>';
 my $TEST_CASES = <<"ENDTESTCASES";
