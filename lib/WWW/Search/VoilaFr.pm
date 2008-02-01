@@ -53,6 +53,7 @@ mikou@spip.viewline.net
 package WWW::Search::VoilaFr;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
@@ -63,7 +64,7 @@ use WWW::Search(qw( generic_option strip_tags unescape_query ));
 use WWW::SearchResult;
 
 our
-$VERSION = do { my @r = ( q$Revision: 1.3 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 1.4 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 my($debug) = 0;
 my ($engine) = "voila.fr";

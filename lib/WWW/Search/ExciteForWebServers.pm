@@ -41,6 +41,7 @@ All rights reserved.
 package WWW::Search::ExciteForWebServers;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
@@ -49,7 +50,7 @@ use Carp();
 use WWW::SearchResult;
 
 our
-$VERSION = do { my @r = ( q$Revision: 1.4 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 1.5 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 my($debug) = 0;
 

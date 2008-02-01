@@ -1,6 +1,6 @@
 # MetaCrawler.pm
 # by Jim Smyser
-# $Id: MetaCrawler.pm,v 2.71 2007/07/19 03:28:35 Daddy Exp $
+# $Id: MetaCrawler.pm,v 2.72 2008/02/01 02:50:26 Daddy Exp $
 
 =head1 NAME
 
@@ -71,11 +71,12 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 package WWW::Search::MetaCrawler;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
 our
-$VERSION = do { my @r = ( q$Revision: 2.71 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 2.72 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 my $MAINTAINER = 'Jim Smyser <jsmyser@bigfoot.com>';
 my $TEST_CASES = <<"ENDTESTCASES";

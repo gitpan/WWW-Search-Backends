@@ -1,7 +1,7 @@
 # Profusion.pm
 # by Jim Smyser
 # Copyright (c) 1999 by Jim Smyser & USC/ISI
-# $Id: Profusion.pm,v 2.21 2007/07/20 21:37:40 Daddy Exp $
+# $Id: Profusion.pm,v 2.22 2008/02/01 02:50:27 Daddy Exp $
 
 =head1 NAME
 
@@ -114,11 +114,12 @@ Also added returning of all HTML (raw).
 package WWW::Search::Profusion;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
 our
-$VERSION = do { my @r = ( q$Revision: 2.21 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 2.22 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 my $MAINTAINER = 'Jim Smyser <jsmyser@bigfoot.com>';
 my $TEST_CASES = <<"ENDTESTCASES";

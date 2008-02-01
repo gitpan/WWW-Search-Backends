@@ -1,5 +1,5 @@
 
-# $Id: CraigsList.pm,v 1.3 2006/08/12 19:44:20 Daddy Exp $
+# $Id: CraigsList.pm,v 1.4 2008/02/01 02:43:31 Daddy Exp $
 
 =head1 NAME
 
@@ -53,6 +53,9 @@ See the Changes file
 
 package WWW::Search::CraigsList;
 
+use strict;
+use warnings;
+
 use Carp ();
 use Data::Dumper;  # for debugging only
 use HTML::TreeBuilder;
@@ -61,11 +64,10 @@ use WWW::SearchResult;
 use URI;
 use URI::Escape;
 
-use strict;
 use vars qw( $VERSION $MAINTAINER @ISA );
 
 @ISA = qw( WWW::Search );
-$VERSION = do { my @r = (q$Revision: 1.3 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.4 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 $MAINTAINER = 'Martin Thurn <mthurn@cpan.org>';
 
 sub native_setup_search

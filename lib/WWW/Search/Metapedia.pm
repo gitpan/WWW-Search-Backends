@@ -1,7 +1,7 @@
 # Metapedia.pm
 # by Jim Smyser
 # Copyright (C) 1996-1998 by USC/ISI
-# $Id: Metapedia.pm,v 2.41 2007/07/20 21:34:50 Daddy Exp $
+# $Id: Metapedia.pm,v 2.42 2008/02/01 02:50:26 Daddy Exp $
 
 =head1 NAME
 
@@ -78,11 +78,12 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 package WWW::Search::Metapedia;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
 our
-$VERSION = do { my @r = ( q$Revision: 2.41 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 2.42 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 use Carp ();
 use WWW::Search(generic_option);

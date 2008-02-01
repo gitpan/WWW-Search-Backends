@@ -4,7 +4,7 @@
 # Fireball.pm
 # by Andreas Borchert
 # nearly everything has been shamelessly copied from:
-# $Id: Fireball.pm,v 2.11 2007/07/20 21:33:15 Daddy Exp $
+# $Id: Fireball.pm,v 2.12 2008/02/01 02:50:25 Daddy Exp $
 
 =head1 NAME
 
@@ -80,11 +80,12 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 package WWW::Search::Fireball;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
 our
-$VERSION = do { my @r = ( q$Revision: 2.11 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 2.12 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 use Carp ();
 use WWW::Search qw( generic_option strip_tags );

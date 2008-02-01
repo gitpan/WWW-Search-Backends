@@ -2,7 +2,7 @@
 # News.pm
 # by Jim Smyser
 # Copyright (c) 1999 by Jim Smyser & USC/ISI
-# $Id: News.pm,v 2.5 2007/07/20 20:33:30 Daddy Exp $
+# $Id: News.pm,v 2.6 2008/02/01 02:50:28 Daddy Exp $
 # Complete copyright notice follows below.
 ###############################################################
 
@@ -88,6 +88,7 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 package WWW::Search::Excite::News;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
@@ -96,7 +97,7 @@ use WWW::Search(generic_option);
 use WWW::SearchResult;
 
 our
-$VERSION = do { my @r = (q$Revision: 2.5 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 2.6 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 
 my $MAINTAINER = 'Jim Smyser <jsmyser@bigfoot.com>';
 my $TEST_CASES = <<"ENDTESTCASES";

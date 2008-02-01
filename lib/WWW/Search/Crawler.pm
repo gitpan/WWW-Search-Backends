@@ -8,7 +8,7 @@
 # AltaVista.pm
 # by John Heidemann
 # Copyright (C) 1996-1998 by USC/ISI
-# $Id: Crawler.pm,v 1.4 2007/07/19 01:08:24 Daddy Exp $
+# $Id: Crawler.pm,v 1.5 2008/02/01 02:50:25 Daddy Exp $
 #
 # Complete copyright notice follows below.
 #
@@ -101,6 +101,7 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 package WWW::Search::Crawler;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
@@ -109,7 +110,7 @@ use WWW::Search(generic_option);
 use WWW::SearchResult;
 
 our
-$VERSION = do { my @r = ( q$Revision: 1.4 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 1.5 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 sub undef_to_emptystring {
     return defined($_[0]) ? $_[0] : "";

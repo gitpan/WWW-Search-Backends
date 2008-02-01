@@ -2,7 +2,7 @@
 # NetFind.pm
 # by Gil Vidals
 # Copyright (C) 1999-2000 by Gil Vidals at PositionGeek.com
-# $Id: NetFind.pm,v 1.801 2007/07/20 21:36:19 Daddy Exp $
+# $Id: NetFind.pm,v 1.802 2008/02/01 02:50:26 Daddy Exp $
 ##########################################################
 
 =head1 NAME
@@ -110,11 +110,12 @@ First release  09/19/99
 package WWW::Search::NetFind;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
 our
-$VERSION = do { my @r = ( q$Revision: 1.801 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 1.802 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 my $MAINTAINER = 'Gil Vidals <gil@positiongeek.com>';
 my $TEST_CASES = <<"ENDTESTCASES";

@@ -1,5 +1,5 @@
 
-# $Id: WatchNet.pm,v 1.4 2007/07/20 20:29:22 Daddy Exp $
+# $Id: WatchNet.pm,v 1.5 2008/02/01 02:50:27 Daddy Exp $
 
 =head1 NAME
 
@@ -77,6 +77,7 @@ See the Changes file
 package WWW::Search::WatchNet;
 
 use strict;
+use warnings;
 
 use Carp ();
 use Data::Dumper;  # for debugging only
@@ -89,7 +90,7 @@ use URI::Escape;
 use vars qw( $VERSION $MAINTAINER @ISA );
 
 @ISA = qw( WWW::Search );
-$VERSION = do { my @r = (q$Revision: 1.4 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+$VERSION = do { my @r = (q$Revision: 1.5 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 $MAINTAINER = 'Martin Thurn <mthurn@cpan.org>';
 
 sub native_setup_search

@@ -1,7 +1,7 @@
 # HotFiles.pm
 # by Jim Smyser
 # Copyright (C) 1996-1998 by USC/ISI
-# $Id: HotFiles.pm,v 2.11 2007/07/20 21:34:06 Daddy Exp $
+# $Id: HotFiles.pm,v 2.12 2008/02/01 02:50:26 Daddy Exp $
 # Complete copyright notice follows below.
 
 =head1 NAME
@@ -89,11 +89,12 @@ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 package WWW::Search::HotFiles;
 
 use strict;
+use warnings;
 
 use base 'WWW::Search';
 
 our
-$VERSION = do { my @r = ( q$Revision: 2.11 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
+$VERSION = do { my @r = ( q$Revision: 2.12 $ =~ /\d+/g ); sprintf "%d." . "%03d" x $#r, @r };
 
 my $MAINTAINER = 'Jim Smyser <jsmyser@bigfoot.com>';
 my $TEST_CASES = <<"ENDTESTCASES";
